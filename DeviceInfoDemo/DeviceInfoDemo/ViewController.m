@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *batteryLab;
 @property (weak, nonatomic) IBOutlet UILabel *cpuLab;
 @property (weak, nonatomic) IBOutlet UILabel *memLab;
+@property (weak, nonatomic) IBOutlet UILabel *versionLab;
+@property (weak, nonatomic) IBOutlet UILabel *buildLab;
 
 @end
 
@@ -41,6 +43,14 @@
     // "iOSVersion : 11.1.2"
     NSLog(@"iOSVersion : %@",iOSVersion);
     
+    NSString *AppVersion = [YQDeviceInfo getAppVersion];
+    // "AppVersion : 1.0"
+    NSLog(@"AppVersion : %@",AppVersion);
+    
+    NSString *AppBuild = [YQDeviceInfo getAppBuild];
+    // "AppBuild : 1"
+    NSLog(@"AppBuild : %@",AppBuild);
+    
     CGFloat bettaryLevel = [YQDeviceInfo getBettaryLevel];
     // "bettary : 25%"
     NSLog(@"bettary : %.0f%%",bettaryLevel*100);
@@ -57,9 +67,10 @@
 
 - (void)updateShowing{
     self.deviceLab.text = [NSString stringWithFormat:@"Device:%@",[YQDeviceInfo getDeviceNameWithDetail:YES]];
-    self.osLab.text = [NSString stringWithFormat:@"OS:%@",[YQDeviceInfo getIOSVersion]];
+    self.osLab.text = [NSString stringWithFormat:@"iOS:%@",[YQDeviceInfo getIOSVersion]];
+    self.versionLab.text = [NSString stringWithFormat:@"AppVersion:%@",[YQDeviceInfo getAppVersion]];
+    self.buildLab.text = [NSString stringWithFormat:@"AppBuild:%@",[YQDeviceInfo getAppBuild]];
     self.batteryLab.text = [NSString stringWithFormat:@"Battery:%.2f%%",[YQDeviceInfo getBettaryLevel]*100];
-    
     self.cpuLab.text = [NSString stringWithFormat:@"CPU:%.2f%%",[YQDeviceInfo getCpuUsage]*100];
     self.memLab.text = [NSString stringWithFormat:@"Mem:%.2f mb",[YQDeviceInfo getUsedMemoryInMB]];
 }

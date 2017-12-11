@@ -15,10 +15,20 @@
 
 @implementation YQDeviceInfo
 
-#pragma mark - IOSVersion
+#pragma mark - Version
 + (NSString *)getIOSVersion
 {
     return [[UIDevice currentDevice] systemVersion];
+}
+
++ (NSString *)getAppVersion{
+    NSString *app_version = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
+    return app_version;
+}
+
++ (NSString *)getAppBuild{
+    NSString *app_build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    return app_build;
 }
 
 #pragma mark - BettaryLevel
