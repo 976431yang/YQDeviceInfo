@@ -1,0 +1,1 @@
+../../../../../YQDeviceInfo/YQDeviceInfo.h
