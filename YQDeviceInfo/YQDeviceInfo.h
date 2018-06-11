@@ -24,6 +24,8 @@
 // like "1"
 + (NSString *)getAppBuild;
 
+// like "****Demo"
++ (NSString *)getAppDisplayName;
 
 // 0~1.0, '-1'means error
 + (CGFloat)getBettaryLevel;

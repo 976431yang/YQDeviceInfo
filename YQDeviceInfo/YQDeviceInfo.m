@@ -16,30 +16,33 @@
 @implementation YQDeviceInfo
 
 #pragma mark - Version
-+ (NSString *)getIOSVersion
-{
++ (NSString *)getIOSVersion {
     return [[UIDevice currentDevice] systemVersion];
 }
 
-+ (NSString *)getAppVersion{
++ (NSString *)getAppVersion {
     NSString *app_version = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     return app_version;
 }
 
-+ (NSString *)getAppBuild{
++ (NSString *)getAppBuild {
     NSString *app_build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     return app_build;
 }
 
++ (NSString *)getAppDisplayName {
+    NSString *name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+    return name;
+}
+
 #pragma mark - BettaryLevel
-+ (CGFloat)getBettaryLevel
-{
++ (CGFloat)getBettaryLevel {
     [UIDevice currentDevice].batteryMonitoringEnabled = YES;
     return (double)[[UIDevice currentDevice] batteryLevel];
 }
 
 #pragma mark - Memory
-+ (CGFloat)getUsedMemoryInMB{
++ (CGFloat)getUsedMemoryInMB {
     vm_size_t memory = usedMemory();
     return memory / 1000.0 / 1000.0;
 }
@@ -51,13 +54,12 @@ vm_size_t usedMemory(void) {
 }
 
 #pragma mark - CPU
-+ (CGFloat)getCpuUsage{
++ (CGFloat)getCpuUsage {
     float cpu = cpu_usage();
     return (double)cpu * 0.01;
 }
 
-float cpu_usage()
-{
+float cpu_usage() {
     kern_return_t kr;
     task_info_data_t tinfo;
     mach_msg_type_number_t task_info_count;
@@ -119,8 +121,7 @@ float cpu_usage()
 }
 
 #pragma mark - Device
-+ (NSString *)getDeviceNameWithDetail:(BOOL)detail
-{
++ (NSString *)getDeviceNameWithDetail:(BOOL)detail {
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
