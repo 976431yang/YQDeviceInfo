@@ -36,5 +36,8 @@
 // 0~1.0
 + (CGFloat)getCpuUsage;
 
+// nil => No Wifi
++ (NSString  *)getWifiName;
+
 
 @end

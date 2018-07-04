@@ -12,6 +12,7 @@
 
 #import"sys/utsname.h"
 #import "mach/mach.h"
+#import <SystemConfiguration/CaptiveNetwork.h>
 
 @implementation YQDeviceInfo
 
@@ -118,6 +119,20 @@ float cpu_usage() {
     assert(kr == KERN_SUCCESS);
     
     return tot_cpu;
+}
+
+#pragma mark - Wifi
++ (NSString  *)getWifiName {
+    NSString *ssid = nil;
+    NSArray *ifs = (__bridge   id)CNCopySupportedInterfaces();
+    for (NSString *ifname in ifs) {
+        NSDictionary *info = (__bridge id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifname);
+        if (info[@"SSID"])
+        {
+            ssid = info[@"SSID"];
+        }
+    }
+    return ssid;
 }
 
 #pragma mark - Device
