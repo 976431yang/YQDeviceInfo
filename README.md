@@ -7,7 +7,7 @@ iOS Device Infomation,like model,ios version,battery level,cpu,memory
 ### Example Code:
 ##### 设备型号：
 ```objective-c
-	NSString *model = [YQDeviceInfo getDeviceName];
+    NSString *model = [YQDeviceInfo getDeviceName];
     // "iPhone 16 Pro Max"
     NSLog(@"%@",model);
 ```
